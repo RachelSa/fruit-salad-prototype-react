@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import './App.css'
+const fruits = ['banana', 'blackberry', 'kiwi', 'orange']
+
+function fruitImages() {
+  return fruits.map(fruit => require(`./images/${fruit}.png`))
+}
+
+function handleButtonClick(path){
+  return <img src={path}></img>
+}
 
 function App() {
+  const imagePaths = fruitImages()
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      { imagePaths.map(path => {
+        return (
+          <button
+            className='invisi-button'
+            onClick={() => handleButtonClick(path)}
+          >
+              <img className='icon' src={path} />
+          </button>
+        )}
+      )}
     </div>
-  );
+  )
 }
 
 export default App;
